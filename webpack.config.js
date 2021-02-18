@@ -13,7 +13,25 @@ const isProduction = !isDevelopment;
 const optimization = () => {
   const config = {
     splitChunks: {
-      chunks: "all"
+      chunks: "all",
+      minSize: 20000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
     }
   };
 
@@ -28,7 +46,6 @@ const fileName = (ext) => (isDevelopment ? `[name].${ext}` : `[name].[hash].${ex
 
 module.exports = {
   context: path.resolve(__dirname, "src"),
-  mode: "development",
   entry: {
     main: ["./index.tsx"]
   },
@@ -46,7 +63,7 @@ module.exports = {
   devServer: {
     port: 4200
   },
-  devtool: "inline-source-map",
+  devtool: isDevelopment ? "source-map" : "none",
   plugins: [
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, "public/index.html"),
