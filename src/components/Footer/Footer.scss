@@ -1,0 +1,10 @@
+.app-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--app-theme-grey-light-600);
+  color: var(--app-theme-data-viz-red);
+  font-size: 2.4rem;
+  font-family: var(--app-font-family);
+  text-transform: lowercase;
+}

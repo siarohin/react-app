@@ -1,6 +1,6 @@
 {
   "name": "react-movie",
-  "version": "1.0.2",
+  "version": "1.0.6",
   "description": "",
   "private": true,
   "scripts": {
@@ -10,22 +10,29 @@
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
     "test": "jest --verbose",
-    "test:coverage": "jest --silent --coverage"
+    "test:coverage": "jest --silent --coverage",
+    "test:snapshot": "jest --verbose \"-u\""
   },
   "browserslist": "> 0.25%, not dead",
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@fontsource/roboto": "^4.2.1",
     "@hot-loader/react-dom": "^17.0.1",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "@reduxjs/toolkit": "^1.5.0",
-    "normalize.css": "^8.0.1",
+    "fontsource-roboto": "^4.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-reactive-form": "^1.0.32",
     "react-redux": "^7.2.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-observable": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -40,6 +47,10 @@
     "@types/node": "^14.14.28",
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
+    "@types/react-redux": "^7.1.16",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/react-test-renderer": "^17.0.1",
+    "@types/redux-mock-store": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.0",
     "babel-eslint": "^10.1.0",
@@ -62,7 +73,7 @@
     "eslint-webpack-plugin": "^2.4.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^3.2.0",
-    "husky": "^5.0.9",
+    "husky": "^4.3.7",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
     "jest-html-reporters": "^2.1.2",
@@ -72,8 +83,11 @@
     "prettier": "^2.2.1",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^17.0.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-mock-store": "^1.5.4",
     "sass": "^1.29.0",
     "sass-loader": "^7.3.1",
+    "shelljs": "^0.8.4",
     "terser-webpack-plugin": "^4.2.3",
     "typescript": "^4.1.5",
     "webpack": "^4.41.5",
@@ -82,7 +96,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && node scripts/pre-commit-hook.js"
     }
   },
   "lint-staged": {

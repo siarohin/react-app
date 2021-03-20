@@ -1,0 +1,40 @@
+.MuiToggleButtonGroup-root.app-filter-buttons {
+  height: 100%;
+}
+
+.MuiToggleButtonGroup-root .app-filter-buttons__toggle-button {
+  &.MuiToggleButton-root {
+    font-size: 1.8rem;
+    font-family: var(--app-font-family);
+    text-transform: uppercase;
+    color: var(--app-theme-grey-light-25);
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: var(--app-spacing-s);
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    height: inherit;
+    cursor: pointer;
+    position: relative;
+  }
+
+  &.Mui-selected .MuiToggleButton-label {
+    color: var(--app-theme-grey-light-25);
+  }
+
+  &:hover {
+    color: var(--app-theme-data-viz-red);
+  }
+
+  &:hover::after,
+  &.Mui-selected::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: var(--app-spacing-xxxs);
+    bottom: var(--app-negative-spacing-xxxs);
+    background: var(--app-theme-data-viz-red);
+  }
+}

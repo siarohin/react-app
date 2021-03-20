@@ -1,0 +1,62 @@
+.app-search-panel {
+  margin: var(--app-spacing-m) var(--app-spacing-xxxl);
+  display: grid;
+  grid-template-rows: minmax(0, max-content) 1fr;
+  grid-template-columns: 1fr;
+  gap: var(--app-spacing-xs);
+
+  &__name {
+    grid-row: 1 / span 1;
+    font-size: 2.8rem;
+    font-weight: normal;
+    letter-spacing: var(--app-letter-spacing);
+    color: var(--app-theme-grey-light-25);
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  &__form {
+    grid-row: 2 / span 1;
+    display: inline-grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 6rem;
+    column-gap: var(--app-spacing-xs);
+  }
+}
+
+.MuiFormControl-root.app-search-panel__form-field {
+  .MuiFormLabel-root {
+    font-size: 1.8rem;
+    color: var(--app-theme-grey-light-25);
+    font-family: var(--app-font-family);
+    opacity: 0.5;
+  }
+
+  .MuiInputBase-root {
+    border-radius: var(--app-spacing-xxxs);
+    font-size: 1.8rem;
+    color: var(--app-theme-grey-light-25);
+    font-family: var(--app-font-family);
+    height: 100%;
+    background: var(--app-theme-grey-light-600);
+    opacity: 0.8;
+  }
+
+  .MuiInputBase-root::before,
+  .MuiInputBase-root::after {
+    content: none;
+  }
+
+  .MuiFilledInput-input {
+    padding: 0 var(--app-spacing-s);
+  }
+}
+
+.MuiButtonBase-root.app-search-panel__form-button {
+  font-size: 2.4rem;
+  font-family: var(--app-font-family);
+  color: var(--app-theme-grey-light-25);
+  background: var(--app-theme-data-viz-red);
+  border: 0.2rem solid var(--app-theme-data-viz-red);
+  padding: var(--app-spacing-xs) var(--app-spacing-xl);
+}

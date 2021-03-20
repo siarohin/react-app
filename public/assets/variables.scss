@@ -1,0 +1,86 @@
+@use "sass:meta";
+
+@import "~@fontsource/roboto/scss/mixins";
+
+@include fontFaceCustom(
+  $fontName: RobotoLight,
+  $style: normal,
+  $weight: 300,
+  $woff2Path: "../../node_modules/fontsource-roboto/files/roboto-latin-300-normal.woff2",
+  $woffPath: "../../node_modules/fontsource-roboto/files/roboto-all-300-normal.woff"
+);
+@include fontFaceCustom(
+  $fontName: RobotoRegular,
+  $weight: 400,
+  $woff2Path: "../../node_modules/fontsource-roboto/files/roboto-latin-300-normal.woff2",
+  $woffPath: "../../node_modules/fontsource-roboto/files/roboto-all-300-normal.woff"
+);
+@include fontFaceCustom(
+  $fontName: RobotoMedium,
+  $weight: 500,
+  $woff2Path: "../../node_modules/fontsource-roboto/files/roboto-latin-500-normal.woff2",
+  $woffPath: "../../node_modules/fontsource-roboto/files/roboto-all-500-normal.woff"
+);
+@include fontFaceCustom(
+  $fontName: RobotoBold,
+  $weight: 700,
+  $woff2Path: "../../node_modules/fontsource-roboto/files/roboto-latin-700-normal.woff2",
+  $woffPath: "../../node_modules/fontsource-roboto/files/roboto-all-700-normal.woff"
+);
+
+// fonts
+$font-family-light: RobotoLight, sans-serif !default;
+$font-family: RobotoRegular, sans-serif !default;
+$font-family-medium: RobotoMedium, sans-serif !default;
+$font-family-bold: RobotoBold, sans-serif !default;
+
+$letter-spacing: 0.1rem;
+
+// backgrounds
+$theme-grey-light-900: #232323;
+$theme-grey-light-600: #424242;
+$theme-grey-light-400: #555555;
+$theme-grey-light-25: #ffffff;
+$theme-data-viz-red: #f65261;
+$theme-data-viz-green: #98da51;
+
+// values for calculating sizes
+$spacing-xxxs: 0.4rem;
+$spacing-xxs: 0.8rem;
+$spacing-xs: 1rem;
+$spacing-s: 1.2rem;
+$spacing-m: 2rem;
+$spacing-l: 3.2rem;
+$spacing-xl: 4rem;
+$spacing-xxl: 6.4rem;
+$spacing-xxxl: 8rem;
+
+$negative-spacing-xxxs: -$spacing-xxxs;
+
+:root {
+  --app-font-family-light: #{meta.inspect($font-family-light)};
+  --app-font-family: #{meta.inspect($font-family)};
+  --app-font-family-medium: #{meta.inspect($font-family-medium)};
+  --app-font-family-bold: #{meta.inspect($font-family-bold)};
+
+  --app-letter-spacing: #{meta.inspect($letter-spacing)};
+
+  --app-theme-grey-light-900: #{meta.inspect($theme-grey-light-900)};
+  --app-theme-grey-light-600: #{meta.inspect($theme-grey-light-600)};
+  --app-theme-grey-light-400: #{meta.inspect($theme-grey-light-400)};
+  --app-theme-grey-light-25: #{meta.inspect($theme-grey-light-25)};
+  --app-theme-data-viz-red: #{meta.inspect($theme-data-viz-red)};
+  --app-theme-data-viz-green: #{meta.inspect($theme-data-viz-green)};
+
+  --app-spacing-xxxs: #{meta.inspect($spacing-xxxs)};
+  --app-spacing-xxs: #{meta.inspect($spacing-xxs)};
+  --app-spacing-xs: #{meta.inspect($spacing-xs)};
+  --app-spacing-s: #{meta.inspect($spacing-s)};
+  --app-spacing-m: #{meta.inspect($spacing-m)};
+  --app-spacing-l: #{meta.inspect($spacing-l)};
+  --app-spacing-xl: #{meta.inspect($spacing-xl)};
+  --app-spacing-xxl: #{meta.inspect($spacing-xxl)};
+  --app-spacing-xxxl: #{meta.inspect($spacing-xxxl)};
+
+  --app-negative-spacing-xxxs: #{meta.inspect($negative-spacing-xxxs)};
+}

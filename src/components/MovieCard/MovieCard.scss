@@ -1,0 +1,59 @@
+.MuiPaper-root {
+  &.app-movie-card {
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+    position: relative;
+  }
+
+  .app-movie-card__movie-menu {
+    position: absolute;
+    top: var(--app-spacing-m);
+    right: var(--app-spacing-m);
+    z-index: 0;
+  }
+
+  &.app-movie-card:hover .app-movie-card__movie-menu {
+    z-index: 1;
+  }
+}
+
+.MuiCardMedia-root {
+  &.app-movie-card__poster {
+    padding-top: 125%;
+  }
+}
+
+.MuiCardContent-root {
+  &.app-movie-card__content {
+    font-family: var(--app-font-family);
+    font-size: 1.4rem;
+    letter-spacing: var(--app-letter-spacing);
+    color: var(--app-theme-grey-light-25);
+    display: grid;
+    align-items: baseline;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .app-movie-card__content-title {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 2;
+    font-size: 1.8rem;
+  }
+
+  .app-movie-card__content-genres {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 1;
+  }
+
+  .app-movie-card__content-date {
+    font-size: 1.4rem;
+    justify-self: flex-end;
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1;
+    border: 0.1rem solid var(--app-theme-grey-light-25);
+    border-radius: var(--app-spacing-xxxs);
+    padding: var(--app-spacing-xxxs);
+  }
+}

@@ -42,9 +42,9 @@ module.exports = {
           "private-field",
           "protected-field",
           "public-field",
-          "public-method",
+          "private-method",
           "protected-method",
-          "private-method"
+          "public-method"
         ]
       }
     ],
@@ -68,7 +68,7 @@ module.exports = {
       },
       {
         selector: "property",
-        format: ["camelCase"]
+        format: ["camelCase", "snake_case", "PascalCase"]
       },
       {
         selector: "parameter",
@@ -90,17 +90,7 @@ module.exports = {
     ],
     "@typescript-eslint/semi": ["error", "always"],
     "@typescript-eslint/type-annotation-spacing": "error",
-    "@typescript-eslint/typedef": [
-      "error",
-      {
-        arrowParameter: false,
-        memberVariableDeclaration: true,
-        parameter: true,
-        propertyDeclaration: true,
-        variableDeclaration: true,
-        variableDeclarationIgnoreFunction: true
-      }
-    ],
+    "@typescript-eslint/typedef": "off",
     "comma-dangle": "error",
     curly: "error",
     "default-case": "error",
@@ -117,7 +107,7 @@ module.exports = {
     "no-eval": "error",
     "no-multiple-empty-lines": ["error", { max: 1, maxBOF: 0, maxEOF: 1 }],
     "no-new-wrappers": "error",
-    "no-null/no-null": "error",
+    "no-null/no-null": "off",
     "no-restricted-imports": ["error", { paths: ["lodash"] }],
     "no-trailing-spaces": ["error"],
     "no-underscore-dangle": "error",

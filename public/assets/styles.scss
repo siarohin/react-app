@@ -1,7 +1,11 @@
-@import "~normalize.css";
-@import "roboto.scss";
+@import "variables.scss";
 
 html {
-  font-family: "Roboto", sans-serif;
-  font-size: 10px;
+  font-family: var(--app-font-family);
+  font-size: 0.85vw;
+  background-color: var(--app-theme-grey-light-400);
+}
+
+body {
+  margin: 0;
 }

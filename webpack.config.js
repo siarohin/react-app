@@ -61,7 +61,8 @@ module.exports = {
   },
   optimization: optimization(),
   devServer: {
-    port: 4200
+    port: 4200,
+    historyApiFallback: true
   },
   devtool: isDevelopment ? "source-map" : "none",
   plugins: [
@@ -112,8 +113,8 @@ module.exports = {
         use: ["file-loader"]
       },
       {
-        test: /\.(ttf|wof|wof2|eot)$/,
-        use: ["file-loader"]
+        test: /\.(woff|woff2|ttf|eot)$/,
+        use: "file-loader?name=fonts/[name].[ext]!static"
       },
       {
         test: /\.(js|jsx|ts|tsx)$/,

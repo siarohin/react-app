@@ -1,0 +1,7 @@
+*[class*="MuiCircularProgress-root"].app-movies-list__progress-bar {
+  justify-self: center;
+
+  *[class*="MuiCircularProgress-svg"] {
+    color: var(--app-theme-data-viz-red);
+  }
+}

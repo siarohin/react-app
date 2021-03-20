@@ -1,0 +1,25 @@
+.app-header-layout {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, max-content);
+  grid-template-rows: minmax(0, max-content) 1fr;
+  padding: var(--app-spacing-m) var(--app-spacing-xl);
+  gap: var(--app-spacing-xs);
+  position: relative;
+
+  &::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: var(--app-spacing-xs);
+    z-index: -1;
+    background: url(../../../public/assets/background.jpg) center / cover no-repeat;
+    filter: blur(0.4rem);
+  }
+
+  &__logo {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 1;
+  }
+}

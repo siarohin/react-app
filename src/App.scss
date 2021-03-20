@@ -1,0 +1,5 @@
+#root {
+  display: grid;
+  grid-template-rows: auto auto var(--app-spacing-xxxl);
+  height: 100vh;
+}

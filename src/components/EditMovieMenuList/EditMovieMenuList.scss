@@ -1,0 +1,33 @@
+.MuiList-root.app-edit-movie-menu-list__menu {
+  color: var(--app-theme-grey-light-25);
+  background-color: var(--app-theme-grey-light-900);
+  padding-top: var(--app-spacing-l);
+}
+
+.MuiButtonBase-root.app-edit-movie-menu-list__item {
+  font-size: 1.4rem;
+  padding: var(--app-spacing-s) var(--app-spacing-xxxl) var(--app-spacing-s) var(--app-spacing-m);
+  letter-spacing: var(--app-letter-spacing);
+
+  &:hover {
+    background-color: var(--app-theme-data-viz-red);
+  }
+}
+
+.app-edit-movie-menu-list .MuiPaper-rounded {
+  border-radius: 0;
+}
+
+.MuiButtonBase-root.app-edit-movie-menu-list__close-button {
+  position: absolute;
+  top: var(--app-spacing-xxxs);
+  right: var(--app-spacing-xxxs);
+  color: var(--app-theme-grey-light-25);
+  height: 1.8rem;
+  width: 1.8rem;
+  z-index: 1;
+
+  .MuiSvgIcon-root {
+    font-size: 1.8rem;
+  }
+}
