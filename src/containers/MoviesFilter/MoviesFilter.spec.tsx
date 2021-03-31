@@ -1,23 +1,42 @@
-import React, { ReactElement } from "react";
-import { shallow, ShallowWrapper } from "enzyme";
-import noop from "lodash/noop";
+import React from "react";
+import { Provider } from "react-redux";
+import renderer, { ReactTestRenderer } from "react-test-renderer";
+import configureStore from "redux-mock-store";
 
-import { MoviesFilter } from "./MoviesFilter";
+import { State } from "../../core";
+import MoviesFilter from "./MoviesFilter";
+
+const mockStore = configureStore([]);
 
 describe("Containers.MoviesFilter.MoviesFilter: ", () => {
-  let component: ShallowWrapper<ReactElement>;
+  let store: any;
+  let component: ReactTestRenderer;
+
+  beforeEach(() => {
+    store = mockStore({
+      movieList: {
+        totalAmount: 3000
+      },
+      userPreferences: {
+        genres: {
+          all: ["Romantic"],
+          selected: ""
+        },
+        sortingOptions: {
+          options: ["Rating", "Release date"],
+          selected: "Release date"
+        }
+      }
+    } as State);
+
+    component = renderer.create(
+      <Provider store={store}>
+        <MoviesFilter />
+      </Provider>
+    );
+  });
 
   it("should render component", () => {
-    component = shallow(
-      <MoviesFilter
-        genres={undefined}
-        count={undefined}
-        isLoading
-        sortingOptions={undefined}
-        selected={() => noop}
-        changeSorting={() => noop}
-      />
-    );
-    expect(component.exists()).toBe(true);
+    expect(component.toJSON()).toMatchSnapshot();
   });
 });

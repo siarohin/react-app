@@ -13,5 +13,6 @@ const epicMiddleware = createEpicMiddleware();
 export function configureStore(): Store<State> {
   const store = createStore(reducers, composeWithDevTools(applyMiddleware(epicMiddleware)));
   epicMiddleware.run(effects);
+
   return store;
 }

@@ -1,14 +1,33 @@
-import React, { ReactElement } from "react";
-import { shallow, ShallowWrapper } from "enzyme";
+import React from "react";
+import { Provider } from "react-redux";
+import renderer, { ReactTestRenderer } from "react-test-renderer";
+import configureStore from "redux-mock-store";
 import noop from "lodash/noop";
 
-import { MoviesList } from "./MoviesList";
+import { State } from "../../core";
+import MoviesList from "./MoviesList";
+
+const mockStore = configureStore([]);
 
 describe("Containers.MoviesList.MoviesList: ", () => {
-  let component: ShallowWrapper<ReactElement>;
+  let store: any;
+  let component: ReactTestRenderer;
+
+  beforeEach(() => {
+    store = mockStore({
+      movieList: {
+        movies: []
+      }
+    } as State);
+
+    component = renderer.create(
+      <Provider store={store}>
+        <MoviesList editableAction={() => noop} />
+      </Provider>
+    );
+  });
 
   it("should render component", () => {
-    component = shallow(<MoviesList isLoading movies={[]} editableAction={() => noop} handleMovieClick={() => noop} />);
-    expect(component.exists()).toBe(true);
+    expect(component.toJSON()).toMatchSnapshot();
   });
 });

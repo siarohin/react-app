@@ -25,9 +25,16 @@ export enum DialogTitle {
  * Selectable filter options
  */
 export enum FilterOptions {
-  releaseDate = "Release date",
-  title = "Title",
-  budget = "Budget"
+  rating = "Rating",
+  releaseDate = "Release date"
+}
+
+/**
+ * Queries that are used in the filter request
+ */
+export enum FilterOptionsQuery {
+  rating = "vote_average",
+  releaseDate = "release_date"
 }
 
 /**
@@ -46,4 +53,35 @@ export const DEFAULT_GENRE: string = "All";
 export enum Endpoints {
   // REST APIs:
   AppHost = "http://localhost:4000"
+}
+
+/**
+ * Movies per page
+ */
+export const MOVIES_PER_PAGE: number = 30;
+
+/**
+ * Sorting order
+ */
+export const SORTING_ORDER: "asc" | "desc" = "desc";
+
+/**
+ * Search option
+ */
+export const SEARCH_BY: "title" | "genres" = "title";
+
+/**
+ * Upsert movie messages enum
+ */
+export enum UpsertMovieMsg {
+  Success = "The movie has been successfully saved.",
+  Fail = "The movie could not be saved."
+}
+
+/**
+ * Delete movie messages enum
+ */
+export enum DeleteMovieMsg {
+  Fail = "The movie could not be deleted.",
+  Success = "The movie has been successfully deleted."
 }

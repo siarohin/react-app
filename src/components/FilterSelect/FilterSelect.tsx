@@ -1,9 +1,9 @@
 import React, { ChangeEvent, ReactElement, useEffect, useState } from "react";
-import { Select, MenuItem, FormControl } from "@material-ui/core";
 import first from "lodash/first";
 import map from "lodash/map";
 
 import "./FilterSelect.scss";
+import { Select, MenuItem, FormControl } from "../../shared";
 import { IFilterSelectProps } from "./models";
 
 export const FilterSelect = (props: IFilterSelectProps): ReactElement<IFilterSelectProps> => {

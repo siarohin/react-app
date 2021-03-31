@@ -1,1 +1,3 @@
-export * from "./MoviesFilter";
+import MoviesFilter from "./MoviesFilter";
+
+export { MoviesFilter };

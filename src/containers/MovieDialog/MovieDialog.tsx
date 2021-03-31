@@ -1,12 +1,12 @@
 import React, { ComponentType, ReactElement } from "react";
 import { connect } from "react-redux";
 
-import { DialogTitle, MoviesModels, MoviesActions } from "../../core";
+import { DialogTitle, SharedModels, MoviesModels, MoviesActions, State, UserPreferencesModels } from "../../core";
 import { DeleteMovieDialog, UpsertMovieDialog } from "../../components";
 import { IMovieDialog } from "../../models";
 
 const MovieDialog = (
-  props: Omit<IMovieDialog, "onSubmit"> & MoviesModels.IDispatchAction
+  props: Omit<IMovieDialog, "onSubmit"> & SharedModels.IDispatchAction
 ): ReactElement<typeof DeleteMovieDialog> | ReactElement<typeof UpsertMovieDialog> => {
   const { open, onClose, dialogSettings, genres, dispatch } = props;
   const isActionDelete: boolean = dialogSettings?.title === DialogTitle.DELETE;
@@ -43,4 +43,8 @@ const MovieDialog = (
   }
 };
 
-export default connect()(MovieDialog as ComponentType<any>);
+const mapStateToProps = (state: State): Partial<UserPreferencesModels.IUserPreferencesState> => {
+  return { genres: state.userPreferences.genres };
+};
+
+export default connect(mapStateToProps)(MovieDialog as ComponentType<any>);

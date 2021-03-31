@@ -1,2 +1,2 @@
 export * from "./useComponentDidMount";
-export * from "./useHeader";
+export * from "./useFallbackImage";

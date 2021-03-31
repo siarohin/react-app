@@ -1,19 +1,23 @@
-import React, { ReactElement, useEffect, useRef } from "react";
-import SearchIcon from "@material-ui/icons/Search";
-import { IconButton } from "@material-ui/core";
+import React, { ComponentType, ReactElement, useEffect, useRef } from "react";
+import { connect } from "react-redux";
 
 import "./MovieDetails.scss";
+import { IconButton, SearchIcon } from "../../shared";
+import { MoviesModels, UserPreferencesActions, SharedModels } from "../../core";
 import { getFullYear } from "../../utils";
 import { IMovieDetails } from "../../models";
 
-export const MovieDetails = (props: IMovieDetails): ReactElement<IMovieDetails> => {
-  const { movie } = props;
+const MovieDetails = (props: IMovieDetails & SharedModels.IDispatchAction): ReactElement<IMovieDetails> => {
+  const { movie, dispatch } = props;
 
   const containerRef = useRef((null as unknown) as HTMLDivElement);
 
   useEffect(() => containerRef.current?.scrollIntoView({ behavior: "smooth" }), [movie]);
 
-  const onClose = () => props?.handleClose();
+  const onClose = (): void => {
+    const selectedMovie: MoviesModels.IMovie = {} as MoviesModels.IMovie;
+    dispatch(UserPreferencesActions.updateSelectedMovie({ selectedMovie }));
+  };
 
   return (
     <>
@@ -37,3 +41,5 @@ export const MovieDetails = (props: IMovieDetails): ReactElement<IMovieDetails> 
     </>
   );
 };
+
+export default connect()(MovieDetails as ComponentType<any>);

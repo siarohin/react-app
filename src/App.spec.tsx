@@ -15,9 +15,22 @@ describe("App: ", () => {
   beforeEach(() => {
     store = mockStore({
       movieList: {
-        movies: [],
-        isLoading: false
-      }
+        totalAmount: 3000
+      },
+      userPreferences: {
+        genres: {
+          all: ["Romantic"],
+          selected: ""
+        },
+        sortingOptions: {
+          options: ["Rating", "Release date"],
+          selected: "Release date"
+        },
+        search: {
+          selected: ""
+        }
+      },
+      notifications: []
     } as State);
 
     component = renderer.create(

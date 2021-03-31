@@ -2,10 +2,12 @@ import { Observable } from "rxjs";
 import { map as observableMap } from "rxjs/operators";
 import keys from "lodash/keys";
 import map from "lodash/map";
+import omit from "lodash/omit";
 
-import { transformCamelToSnakeCase, transformSnakeToCamelCase } from "../../../utils";
+import { getEnumKey, transformCamelToSnakeCase, transformSnakeToCamelCase } from "../../../utils";
+import { FilterOptions, FilterOptionsQuery } from "../../../core";
 import { MoviesModels } from "../../store";
-import { MovieResponse } from "./models";
+import { IMovieData, IMovieResponseData, IMoviesRequestQuery } from "./models";
 import { MovieRepository } from "./MovieRepository";
 
 /**
@@ -18,32 +20,66 @@ export class MovieService {
     this.movieRepository = new MovieRepository();
   }
 
-  private getMovieByModel(movie: MovieResponse): MoviesModels.IMovie {
+  private getMovieByModel(movie: IMovieResponseData): MoviesModels.IMovie {
     const INITIAL_VALUE: MoviesModels.IMovie = {} as MoviesModels.IMovie;
     return keys(movie).reduce(
-      (movieKeys, key) => ({ ...movieKeys, [transformSnakeToCamelCase(key)]: movie?.[key as keyof MovieResponse] }),
+      (movieKeys, key) => ({
+        ...movieKeys,
+        [transformSnakeToCamelCase(key)]: movie?.[key as keyof IMovieResponseData]
+      }),
       INITIAL_VALUE
     ) as MoviesModels.IMovie;
   }
 
-  private getMovieRequestByModel(movie: MoviesModels.IMovie): MovieResponse {
-    const INITIAL_VALUE: MovieResponse = {} as MovieResponse;
+  private getMovieRequestByModel(movie: MoviesModels.IMovie): IMovieResponseData {
+    const INITIAL_VALUE: IMovieResponseData = {} as IMovieResponseData;
     return keys(movie).reduce(
       (movieKeys, key) => ({
         ...movieKeys,
         [transformCamelToSnakeCase(key)]: movie?.[key as keyof MoviesModels.IMovie]
       }),
       INITIAL_VALUE
-    ) as MovieResponse;
+    ) as IMovieResponseData;
+  }
+
+  private getQueries(query: IMoviesRequestQuery): string {
+    const INITIAL_VALUE: string = "";
+    return keys(query).reduce((queries, key) => {
+      let currentQuery: string = "";
+      const shouldUpdateQuery: boolean = !!query?.[key as keyof IMoviesRequestQuery];
+
+      if (shouldUpdateQuery) {
+        switch (key) {
+          case "sortBy":
+            currentQuery =
+              FilterOptionsQuery[
+                getEnumKey(FilterOptions, query[key as keyof IMoviesRequestQuery] as string) as "releaseDate" | "rating"
+              ];
+            break;
+          default:
+            currentQuery = query[key as keyof IMoviesRequestQuery] as string;
+            break;
+        }
+      }
+
+      if (key === "search") {
+        return queries + key + "=" + currentQuery + "&";
+      }
+
+      return queries + key + "=" + currentQuery.replace(/ /g, "_").toLowerCase() + "&";
+    }, INITIAL_VALUE);
   }
 
   /**
    * Get movies list
    */
-  public getMovies(): Observable<Array<MoviesModels.IMovie>> {
-    return this.movieRepository
-      .getMovies()
-      .pipe(observableMap((response) => map(response, (movie) => this.getMovieByModel(movie))));
+  public getMovies(query?: IMoviesRequestQuery): Observable<IMovieData> {
+    return this.movieRepository.getMovies(this.getQueries(query!)).pipe(
+      observableMap((response) => {
+        const movies: Array<MoviesModels.IMovie> = map(response?.data, (movie) => this.getMovieByModel(movie));
+        return { ...omit(response, ["data"]), movies };
+      })
+    );
   }
 
   /**

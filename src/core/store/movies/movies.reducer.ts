@@ -1,53 +1,47 @@
 import { Action, createReducer } from "@reduxjs/toolkit";
 
-import { IMoviesState } from "./models";
+import { IMovie, IMoviesState } from "./models";
 import * as MovieActions from "./movies.actions";
 
 export const INITIAL_STATE: IMoviesState = {
   movies: [],
-  isLoading: false
+  limit: 0,
+  offset: 0,
+  totalAmount: 0
 };
 
 const moviesReducer = createReducer(INITIAL_STATE, (builder) => {
   builder
     // Load
-    .addCase(MovieActions.loadMovies, (state) => ({
-      ...state,
-      isLoading: true
-    }))
     .addCase(MovieActions.loadMoviesSuccess, (state, { payload }) => ({
       ...state,
-      movies: payload.movies,
-      isLoading: false
-    }))
-    .addCase(MovieActions.loadMoviesFail, (state) => ({
-      ...state,
-      isLoading: false
+      ...payload.data
     }))
     // Create
     .addCase(MovieActions.createMovieSuccess, (state, { payload }) => ({
       ...state,
-      movies: [...state.movies, payload.movie]
-    }))
-    .addCase(MovieActions.createMovieFail, (state) => ({
-      ...state
+      movies: [...state.movies, payload.movie],
+      totalAmount: state.totalAmount + 1
     }))
     // Update
-    .addCase(MovieActions.updateMovieSuccess, (state, { payload }) => ({
-      ...state,
-      movies: [...state.movies.filter((movie) => movie.id !== payload.movie.id), payload.movie]
-    }))
-    .addCase(MovieActions.updateMovieFail, (state) => ({
-      ...state
-    }))
+    .addCase(MovieActions.updateMovieSuccess, (state, { payload }) => {
+      const index: number = state.movies.findIndex((movie) => movie.id === payload.movie.id);
+      const movies: Array<IMovie> = [...state.movies.slice(0, index), payload.movie, ...state.movies.slice(index + 1)];
+      return {
+        ...state,
+        movies
+      };
+    })
     // Delete
-    .addCase(MovieActions.deleteMovieSuccess, (state, { payload }) => ({
-      ...state,
-      movies: [...state.movies.filter((movie) => movie.id !== payload.movie.id)]
-    }))
-    .addCase(MovieActions.deleteMovieFail, (state) => ({
-      ...state
-    }));
+    .addCase(MovieActions.deleteMovieSuccess, (state, { payload }) => {
+      const index: number = state.movies.findIndex((movie) => movie.id === payload.movie.id);
+      const movies: Array<IMovie> = [...state.movies.slice(0, index), ...state.movies.slice(index + 1)];
+      return {
+        ...state,
+        movies,
+        totalAmount: state.totalAmount - 1
+      };
+    });
 });
 
 export function reducer(state: IMoviesState = INITIAL_STATE, action: Action): IMoviesState {

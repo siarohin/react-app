@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Containers.MoviesFilter.MoviesFilter:  should render component 1`] = `
+<div
+  className="app-movies-filter"
+>
+  <div
+    className="app-movies-filter__tab-panel"
+  >
+    <div
+      aria-label="text alignment"
+      className="MuiToggleButtonGroup-root app-filter-buttons"
+      role="group"
+    >
+      <button
+        aria-pressed={true}
+        className="MuiButtonBase-root MuiToggleButton-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal app-filter-buttons__toggle-button Mui-selected"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+        value="All"
+      >
+        <span
+          className="MuiToggleButton-label"
+        >
+          All
+        </span>
+      </button>
+      <button
+        aria-pressed={false}
+        className="MuiButtonBase-root MuiToggleButton-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal app-filter-buttons__toggle-button"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+        value="Romantic"
+      >
+        <span
+          className="MuiToggleButton-label"
+        >
+          Romantic
+        </span>
+      </button>
+    </div>
+  </div>
+  <div
+    className="app-movies-filter__select-panel"
+  >
+    <div
+      className="app-filter-select__prefix"
+    >
+      Sort by
+    </div>
+    <div
+      className="MuiFormControl-root app-filter-select__control"
+    >
+      <div
+        className="MuiInputBase-root MuiInput-root MuiInput-underline app-filter-select__select MuiInputBase-formControl MuiInput-formControl"
+        onClick={[Function]}
+      >
+        <div
+          aria-haspopup="listbox"
+          className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          Rating
+        </div>
+        <input
+          aria-hidden={true}
+          className="MuiSelect-nativeInput"
+          onAnimationStart={[Function]}
+          onChange={[Function]}
+          required={false}
+          tabIndex={-1}
+          value="Rating"
+        />
+        <svg
+          aria-hidden={true}
+          className="MuiSvgIcon-root MuiSelect-icon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7 10l5 5 5-5z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div
+    className="app-movies-filter__count"
+  >
+    <span
+      className="app-filter-count"
+    >
+      3000
+    </span>
+     movies found
+  </div>
+  <div
+    className="app-movies-filter__pagination"
+  />
+  <div
+    className="app-movies-filter__separator"
+  />
+</div>
+`;

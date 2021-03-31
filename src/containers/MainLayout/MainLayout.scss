@@ -4,4 +4,5 @@
   row-gap: var(--app-spacing-xs);
   background: var(--app-theme-grey-light-900);
   padding: 0 var(--app-spacing-xl);
+  min-height: calc(100vh - 39.5rem);
 }

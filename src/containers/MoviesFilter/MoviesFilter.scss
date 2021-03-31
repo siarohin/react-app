@@ -37,3 +37,9 @@
   grid-row: 3 / span 1;
   grid-column: 1 / span 2;
 }
+
+.app-movies-filter__pagination {
+  grid-row: 3 / span 1;
+  grid-column: 1 / span 2;
+  justify-self: center;
+}

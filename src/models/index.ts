@@ -2,8 +2,5 @@ export * from "./IMovieDialog";
 export * from "./IDialogSettings";
 export * from "./IMovieAction";
 export * from "./IMovieUpsertAction";
-export * from "./IGenres";
-export * from "./IGenresFilter";
-export * from "./ISortingOptions";
 export * from "./IHeaderContainer";
 export * from "./IMovieDetails";

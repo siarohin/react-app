@@ -14,24 +14,21 @@ describe("Containers.MovieDialog.MovieDialog: ", () => {
   let store: any;
   let component: ReactTestRenderer;
 
-  const { genres, movieDialog } = AppState;
+  const { movieDialog } = AppState;
 
   beforeEach(() => {
     store = mockStore({
-      movieList: {
-        movies: [],
-        isLoading: false
+      userPreferences: {
+        genres: {
+          all: ["Romantic"],
+          selected: "All"
+        }
       }
     } as State);
 
     component = renderer.create(
       <Provider store={store}>
-        <MovieDialog
-          genres={genres.all}
-          dialogSettings={movieDialog.dialogSettings}
-          open={movieDialog.open}
-          onClose={() => noop}
-        />
+        <MovieDialog dialogSettings={movieDialog.dialogSettings} open={movieDialog.open} onClose={() => noop} />
       </Provider>
     );
   });

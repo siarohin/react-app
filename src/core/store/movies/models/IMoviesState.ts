@@ -1,16 +1,28 @@
+import { IMovieResponse } from "../../../services";
 import { IMovie } from "./IMovie";
 
 /**
  * Interface for object that describing the Movies state
+ * The state is modified from API response
  */
-export interface IMoviesState {
+export interface IMoviesState extends Omit<IMovieResponse, "data"> {
   /**
    * Movies
    */
   movies: Array<IMovie>;
 
   /**
-   * If movies on loading
+   * Movies per page
    */
-  isLoading: boolean;
+  limit: number;
+
+  /**
+   * Total amount
+   */
+  totalAmount: number;
+
+  /**
+   * Offset
+   */
+  offset: number;
 }

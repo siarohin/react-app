@@ -1,10 +1,9 @@
 import React, { ReactElement, SyntheticEvent, useState } from "react";
-import { IconButton } from "@material-ui/core";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 import "./EditMovieMenu.scss";
 import { IEditMovieMenuProps } from "./models";
 import { DialogAction } from "../../core";
+import { IconButton, MoreVertIcon } from "../../shared";
 import { EditMovieMenuList } from "../EditMovieMenuList";
 
 export const EditMovieMenu = (props: IEditMovieMenuProps): ReactElement<IEditMovieMenuProps> => {

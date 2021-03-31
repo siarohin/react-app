@@ -1,14 +1,21 @@
-import React, { ReactElement } from "react";
+import React, { ComponentType, ReactElement } from "react";
+import { connect } from "react-redux";
 
 import "./Header.scss";
-import { DialogAction } from "../../core";
+import { DialogAction, SharedModels, State, UserPreferencesActions, UserPreferencesModels } from "../../core";
 import { AddMovieButton, SearchPanel } from "../../components";
 import { IMovieUpsertAction } from "../../models";
 
-export const Header = (props: IMovieUpsertAction): ReactElement => {
-  const { editableAction } = props;
+const Header = (
+  props: UserPreferencesModels.ISearch & IMovieUpsertAction & SharedModels.IDispatchAction
+): ReactElement => {
+  const { selected, editableAction, dispatch } = props;
 
   const handleClick = (): void => editableAction({ action: DialogAction.CREATE });
+
+  const handleSubmit = (value: string): void => {
+    dispatch(UserPreferencesActions.updateSearchValue({ selected: value }));
+  };
 
   return (
     <>
@@ -16,8 +23,14 @@ export const Header = (props: IMovieUpsertAction): ReactElement => {
         <AddMovieButton handleClick={handleClick} />
       </div>
       <div className="app-header__container">
-        <SearchPanel />
+        <SearchPanel selected={selected} onSubmit={handleSubmit} />
       </div>
     </>
   );
 };
+
+const mapStateToProps = (state: State): UserPreferencesModels.ISearch => ({
+  selected: state.userPreferences.search.selected
+});
+
+export default connect(mapStateToProps)(Header as ComponentType<any>);

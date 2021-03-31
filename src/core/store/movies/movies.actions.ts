@@ -1,5 +1,6 @@
 import { createAction } from "@reduxjs/toolkit";
 
+import { IMovieData } from "../../services";
 import { IMovie } from "./models";
 
 /**
@@ -7,7 +8,7 @@ import { IMovie } from "./models";
  */
 export const loadMovies = createAction("[ReactMovie] LOAD_MOVIES");
 
-export const loadMoviesSuccess = createAction<{ movies: Array<IMovie> }>("[ReactMovie] LOAD_MOVIES_SUCCESS");
+export const loadMoviesSuccess = createAction<{ data: IMovieData }>("[ReactMovie] LOAD_MOVIES_SUCCESS");
 
 export const loadMoviesFail = createAction("[WelReactMovie] LOAD_MOVIES_FAIL");
 

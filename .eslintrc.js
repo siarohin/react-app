@@ -22,7 +22,14 @@ module.exports = {
     }
   },
   rules: {
+    "no-restricted-imports": [
+      "error",
+      {
+        patterns: ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+      }
+    ],
     "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/explicit-member-accessibility": [
       "error",
       {

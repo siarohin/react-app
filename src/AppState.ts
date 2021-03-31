@@ -1,6 +1,4 @@
-import values from "lodash/values";
-
-import { FILTER_GENRES, FilterOptions, MoviesModels } from "./core";
+import { MoviesModels } from "./core";
 import { IAppState } from "./IAppState";
 
 /**
@@ -13,13 +11,5 @@ export const AppState: IAppState = {
       values: {} as MoviesModels.IMovie
     },
     open: false
-  },
-  genres: {
-    all: [...FILTER_GENRES],
-    selected: ""
-  },
-  sortingOptions: {
-    options: values(FilterOptions),
-    selected: ""
   }
 };

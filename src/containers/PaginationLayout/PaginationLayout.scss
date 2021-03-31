@@ -1,0 +1,27 @@
+.app-pagination {
+  *[class*="MuiButtonBase-root"],
+  *[class*="MuiPaginationItem-root"] {
+    color: var(--app-theme-grey-light-25);
+    font-family: var(--app-font-family);
+    font-size: 1.4rem;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+
+    &:hover:not([class*="MuiPaginationItem-ellipsis"]) {
+      border: 0.1rem solid var(--app-theme-data-viz-red);
+      color: var(--app-theme-data-viz-red);
+    }
+
+    &[class*="MuiPaginationItem-ellipsis"] {
+      font-size: 1.8rem;
+      height: auto;
+    }
+
+    &[class*="Mui-selected"],
+    &[class*="Mui-selected"]:hover {
+      color: var(--app-theme-grey-light-25);
+      background: var(--app-theme-data-viz-red);
+    }
+  }
+}

@@ -1,16 +1,29 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React, { ChangeEvent, ReactElement, useEffect } from "react";
-import { FormBuilder, FieldGroup, FieldControl, Validators, Handler, InputType, FormGroup } from "react-reactive-form";
-import { Button, Checkbox, Dialog, DialogActions, DialogContent, TextField, IconButton } from "@material-ui/core";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import CloseIcon from "@material-ui/icons/Close";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+import React, { ChangeEvent, ReactElement, useEffect, useMemo } from "react";
 import union from "lodash/union";
 import sortBy from "lodash/sortBy";
 import keys from "lodash/keys";
 
 import "./UpsertMovieDialog.scss";
+import {
+  Button,
+  Checkbox,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  TextField,
+  IconButton,
+  Autocomplete,
+  CloseIcon,
+  CheckBoxIcon,
+  CheckBoxOutlineBlankIcon,
+  FormBuilder,
+  FieldGroup,
+  FieldControl,
+  Validators,
+  Handler,
+  InputType,
+  FormGroup
+} from "../../shared";
 import { MoviesModels } from "../../core";
 import { IMovieDialog } from "../../models";
 import { getFormControlValue } from "./utils";
@@ -18,15 +31,19 @@ import { getFormControlValue } from "./utils";
 export const UpsertMovieDialog = (props: Omit<IMovieDialog, "onDelete">): ReactElement<IMovieDialog> => {
   const { onClose, onSubmit, open, dialogSettings, genres } = props;
 
-  const form: FormGroup = FormBuilder.group({
-    id: [{ value: "", disabled: true }],
-    title: ["", Validators.required],
-    releaseDate: ["", Validators.required],
-    posterPath: ["", Validators.required],
-    genres: ["", Validators.required],
-    overview: ["", Validators.required],
-    runtime: ["", Validators.required]
-  });
+  const form: FormGroup = useMemo(
+    () =>
+      FormBuilder.group({
+        id: [{ value: "", disabled: true }],
+        title: ["", Validators.required],
+        releaseDate: ["", Validators.required],
+        posterPath: ["", Validators.required],
+        genres: ["", Validators.required],
+        overview: ["", Validators.required],
+        runtime: ["", Validators.required]
+      }),
+    []
+  );
 
   const initFormValues = (): void => {
     keys(form.controls).forEach((controlName: keyof MoviesModels.IMovie) => {
@@ -45,7 +62,8 @@ export const UpsertMovieDialog = (props: Omit<IMovieDialog, "onDelete">): ReactE
 
   const handleClose = (): void => onClose();
 
-  const handleSubmit = (): void => {
+  const handleSubmit = (event: ChangeEvent<unknown>): void => {
+    event.preventDefault();
     let movie: MoviesModels.IMovie = { ...form.getRawValue(), runtime: Number(form.getRawValue().runtime) };
     const isEdit: boolean = !!dialogSettings?.values;
 
@@ -89,7 +107,7 @@ export const UpsertMovieDialog = (props: Omit<IMovieDialog, "onDelete">): ReactE
         multiple
         disableCloseOnSelect
         size="small"
-        options={sortBy(union(genres, form?.controls?.genres?.value))}
+        options={sortBy(union(genres?.all, form?.controls?.genres?.value))}
         getOptionLabel={(option) => option}
         value={form.get("genres").value}
         getOptionSelected={(option, value) => option === value}
@@ -120,7 +138,7 @@ export const UpsertMovieDialog = (props: Omit<IMovieDialog, "onDelete">): ReactE
       <FieldGroup
         control={form}
         render={({ pristine, invalid }) => (
-          <form className="app-upsert-movie-dialog__form">
+          <form className="app-upsert-movie-dialog__form" onSubmit={handleSubmit}>
             <h2 className="app-upsert-movie-dialog__title">{dialogSettings?.title}</h2>
             <DialogContent className="app-upsert-movie-dialog__content">
               {form.get("id").value ? (
@@ -184,7 +202,7 @@ export const UpsertMovieDialog = (props: Omit<IMovieDialog, "onDelete">): ReactE
               >
                 Reset
               </Button>
-              <Button className="app-upsert-movie-dialog__button" onClick={handleSubmit} disabled={pristine || invalid}>
+              <Button type="submit" className="app-upsert-movie-dialog__button" disabled={pristine || invalid}>
                 Submit
               </Button>
             </DialogActions>

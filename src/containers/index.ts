@@ -6,3 +6,4 @@ export * from "./MoviesListErrorBoundary";
 export * from "./MovieDialog";
 export * from "./MovieDetails";
 export * from "./HeaderLayout";
+export * from "./PaginationLayout";

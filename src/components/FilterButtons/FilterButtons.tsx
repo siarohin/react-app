@@ -1,12 +1,15 @@
 import React, { ReactElement, MouseEvent, useState, useEffect } from "react";
-import { ToggleButtonGroup, ToggleButton } from "@material-ui/lab";
 import map from "lodash/map";
 
 import "./FilterButtons.scss";
-import { IGenresFilter } from "../../models";
-import { DEFAULT_GENRE } from "../../core";
+import { ToggleButtonGroup, ToggleButton } from "../../shared";
+import { DEFAULT_GENRE, UserPreferencesModels } from "../../core";
 
-export const FilterButtons = (props: IGenresFilter): ReactElement<IGenresFilter> => {
+export const FilterButtons = (
+  props: Omit<UserPreferencesModels.IGenresFilter, "changeSorting" | "count" | "sortingOptions">
+): ReactElement<UserPreferencesModels.IGenresFilter> => {
+  const { genres, selected } = props;
+
   const [selectedGenre, setSelectedGenre] = useState(DEFAULT_GENRE);
 
   const toogleButton = (_: MouseEvent<HTMLElement>, genre: string) => {
@@ -15,7 +18,7 @@ export const FilterButtons = (props: IGenresFilter): ReactElement<IGenresFilter>
     }
   };
 
-  useEffect(() => props.selected(selectedGenre), [selectedGenre]);
+  useEffect(() => selected(selectedGenre), [selectedGenre]);
 
   return (
     <ToggleButtonGroup
@@ -28,7 +31,7 @@ export const FilterButtons = (props: IGenresFilter): ReactElement<IGenresFilter>
       <ToggleButton className="app-filter-buttons__toggle-button" value={DEFAULT_GENRE}>
         {DEFAULT_GENRE}
       </ToggleButton>
-      {map(props?.genres?.all, (genre, index) => (
+      {map(genres?.all, (genre, index) => (
         <ToggleButton key={index} className="app-filter-buttons__toggle-button" value={genre}>
           {genre}
         </ToggleButton>

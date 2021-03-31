@@ -1,8 +1,7 @@
 import React, { ReactElement, SyntheticEvent } from "react";
-import { IconButton, MenuItem, MenuList, Popover } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
 
 import "./EditMovieMenuList.scss";
+import { IconButton, MenuItem, MenuList, Popover, CloseIcon } from "../../shared";
 import { IEditMovieMenuListProps } from "./models";
 
 export const EditMovieMenuList = (props: IEditMovieMenuListProps): ReactElement<IEditMovieMenuListProps> => {

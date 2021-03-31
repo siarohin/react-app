@@ -65,7 +65,7 @@ Array [
         </h3>
         <form
           className="app-search-panel__form"
-          noValidate={true}
+          onSubmit={[Function]}
         >
           <div
             className="MuiFormControl-root MuiTextField-root app-search-panel__form-field"
@@ -86,6 +86,7 @@ Array [
                 placeholder="What do you want to watch?"
                 required={false}
                 type="text"
+                value=""
               />
             </div>
           </div>
@@ -104,7 +105,7 @@ Array [
             onTouchMove={[Function]}
             onTouchStart={[Function]}
             tabIndex={0}
-            type="button"
+            type="submit"
           >
             <span
               className="MuiButton-label"
@@ -176,147 +177,12 @@ Array [
             onTouchStart={[Function]}
             tabIndex={0}
             type="button"
-            value="Comedy"
+            value="Romantic"
           >
             <span
               className="MuiToggleButton-label"
             >
-              Comedy
-            </span>
-          </button>
-          <button
-            aria-pressed={false}
-            className="MuiButtonBase-root MuiToggleButton-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal app-filter-buttons__toggle-button"
-            disabled={false}
-            onBlur={[Function]}
-            onChange={[Function]}
-            onClick={[Function]}
-            onDragLeave={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            onKeyUp={[Function]}
-            onMouseDown={[Function]}
-            onMouseLeave={[Function]}
-            onMouseUp={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
-            tabIndex={0}
-            type="button"
-            value="Crime"
-          >
-            <span
-              className="MuiToggleButton-label"
-            >
-              Crime
-            </span>
-          </button>
-          <button
-            aria-pressed={false}
-            className="MuiButtonBase-root MuiToggleButton-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal app-filter-buttons__toggle-button"
-            disabled={false}
-            onBlur={[Function]}
-            onChange={[Function]}
-            onClick={[Function]}
-            onDragLeave={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            onKeyUp={[Function]}
-            onMouseDown={[Function]}
-            onMouseLeave={[Function]}
-            onMouseUp={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
-            tabIndex={0}
-            type="button"
-            value="Documentary"
-          >
-            <span
-              className="MuiToggleButton-label"
-            >
-              Documentary
-            </span>
-          </button>
-          <button
-            aria-pressed={false}
-            className="MuiButtonBase-root MuiToggleButton-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal app-filter-buttons__toggle-button"
-            disabled={false}
-            onBlur={[Function]}
-            onChange={[Function]}
-            onClick={[Function]}
-            onDragLeave={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            onKeyUp={[Function]}
-            onMouseDown={[Function]}
-            onMouseLeave={[Function]}
-            onMouseUp={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
-            tabIndex={0}
-            type="button"
-            value="Drama"
-          >
-            <span
-              className="MuiToggleButton-label"
-            >
-              Drama
-            </span>
-          </button>
-          <button
-            aria-pressed={false}
-            className="MuiButtonBase-root MuiToggleButton-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal app-filter-buttons__toggle-button"
-            disabled={false}
-            onBlur={[Function]}
-            onChange={[Function]}
-            onClick={[Function]}
-            onDragLeave={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            onKeyUp={[Function]}
-            onMouseDown={[Function]}
-            onMouseLeave={[Function]}
-            onMouseUp={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
-            tabIndex={0}
-            type="button"
-            value="Horror"
-          >
-            <span
-              className="MuiToggleButton-label"
-            >
-              Horror
-            </span>
-          </button>
-          <button
-            aria-pressed={false}
-            className="MuiButtonBase-root MuiToggleButton-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal app-filter-buttons__toggle-button"
-            disabled={false}
-            onBlur={[Function]}
-            onChange={[Function]}
-            onClick={[Function]}
-            onDragLeave={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            onKeyUp={[Function]}
-            onMouseDown={[Function]}
-            onMouseLeave={[Function]}
-            onMouseUp={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
-            tabIndex={0}
-            type="button"
-            value="Romance"
-          >
-            <span
-              className="MuiToggleButton-label"
-            >
-              Romance
+              Romantic
             </span>
           </button>
         </div>
@@ -346,7 +212,7 @@ Array [
               role="button"
               tabIndex={0}
             >
-              Release date
+              Rating
             </div>
             <input
               aria-hidden={true}
@@ -355,7 +221,7 @@ Array [
               onChange={[Function]}
               required={false}
               tabIndex={-1}
-              value="Release date"
+              value="Rating"
             />
             <svg
               aria-hidden={true}
@@ -376,10 +242,13 @@ Array [
         <span
           className="app-filter-count"
         >
-          0
+          3000
         </span>
          movies found
       </div>
+      <div
+        className="app-movies-filter__pagination"
+      />
       <div
         className="app-movies-filter__separator"
       />
@@ -393,5 +262,9 @@ Array [
   >
     React movie
   </div>,
+  <div
+    className="notifications-wrapper"
+    style={Object {}}
+  />,
 ]
 `;

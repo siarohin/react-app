@@ -1,4 +1,4 @@
-import { MoviesModels } from "../core";
+import { MoviesModels, UserPreferencesModels } from "../core";
 import { IDialogSettings } from "./IDialogSettings";
 
 /**
@@ -18,7 +18,7 @@ export interface IMovieDialog {
   /**
    * Genres list
    */
-  genres?: Array<string>;
+  genres?: UserPreferencesModels.IGenres;
 
   /**
    * Callback fired when the component requests to be closed.

@@ -1,17 +1,20 @@
-import React, { ReactElement } from "react";
-import { CircularProgress, Grid } from "@material-ui/core";
+import React, { ComponentType, ReactElement } from "react";
+import { connect } from "react-redux";
 import map from "lodash/map";
 
-import "./MoviesList.scss";
+import { Grid } from "../../shared";
+import { MoviesModels, State, UserPreferencesActions, SharedModels } from "../../core";
 import { MovieCard } from "../../components";
 import { IMoviesListProps } from "./models";
 
-export const MoviesList = (props: IMoviesListProps): ReactElement<IMoviesListProps> => {
-  const { movies, handleMovieClick, editableAction, isLoading } = props;
+const MoviesList = (
+  props: Partial<MoviesModels.IMoviesState> & IMoviesListProps & SharedModels.IDispatchAction
+): ReactElement<IMoviesListProps> => {
+  const { movies, dispatch, editableAction } = props;
 
-  if (isLoading) {
-    return <CircularProgress className="app-movies-list__progress-bar" />;
-  }
+  const handleMovieClick = (selectedMovie: MoviesModels.IMovie): void => {
+    dispatch(UserPreferencesActions.updateSelectedMovie({ selectedMovie }));
+  };
 
   return (
     <Grid item container xs={12} spacing={2}>
@@ -23,3 +26,9 @@ export const MoviesList = (props: IMoviesListProps): ReactElement<IMoviesListPro
     </Grid>
   );
 };
+
+const mapStateToProps = (state: State): Partial<MoviesModels.IMoviesState> => ({
+  movies: state.movieList.movies
+});
+
+export default connect(mapStateToProps)(MoviesList as ComponentType<any>);

@@ -1,2 +1,4 @@
+import MoviesList from "./MoviesList";
+
 export * from "./models";
-export * from "./MoviesList";
+export { MoviesList };

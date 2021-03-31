@@ -1,9 +1,7 @@
 import React, { ReactElement } from "react";
-import Dialog from "@material-ui/core/Dialog";
-import { Button, DialogActions, DialogContent, IconButton } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
 
 import "./DeleteMovieDialog.scss";
+import { Dialog, Button, IconButton, DialogActions, DialogContent, CloseIcon } from "../../shared";
 import { IMovieDialog } from "../../models";
 
 export const DeleteMovieDialog = (props: Omit<IMovieDialog, "onSubmit">): ReactElement<IMovieDialog> => {

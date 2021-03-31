@@ -1,27 +1,26 @@
 import React, { ReactElement, useState } from "react";
-import { Card, CardActionArea, CardMedia, CardContent } from "@material-ui/core";
 
 import "./MovieCard.scss";
+import { Card, CardActionArea, CardMedia, CardContent } from "../../shared";
 import { getFullYear } from "../../utils";
-import { EditMovieMenu } from "../EditMovieMenu";
 import { DialogAction } from "../../core";
+import { useFallbackImage } from "../../hooks";
+import { EditMovieMenu } from "../EditMovieMenu";
 import { IMovieCardProps } from "./models";
 
 export const MovieCard = (props: IMovieCardProps): ReactElement<IMovieCardProps> => {
+  const { movie, editableAction, onClick } = props;
+
   const [isOpenedMovieMenu, setIsOpenedMovieMenu] = useState(false);
 
-  const handleMenuAction = (action: DialogAction) => {
-    const editableAction = {
-      movie: { ...props.movie },
-      action
-    };
-    props.editableAction(editableAction);
-  };
+  const imgProps = useFallbackImage(movie?.posterPath, "./public/assets/noposter.png");
+
+  const handleMenuAction = (action: DialogAction) => editableAction({ movie, action });
 
   const handleCardClick = () => {
     const isClosedMovieMenu: boolean = !isOpenedMovieMenu;
     if (isClosedMovieMenu) {
-      props.onClick(props.movie);
+      onClick(movie);
     }
   };
 
@@ -34,11 +33,11 @@ export const MovieCard = (props: IMovieCardProps): ReactElement<IMovieCardProps>
           className="app-movie-card__movie-menu"
         />
         <CardActionArea>
-          <CardMedia className="app-movie-card__poster" image={props?.movie?.posterPath} title={props?.movie?.title} />
+          <CardMedia className="app-movie-card__poster" component="img" title={movie?.title} {...imgProps} />
           <CardContent className="app-movie-card__content">
-            <h3 className="app-movie-card__content-title">{props?.movie?.title}</h3>
-            <div className="app-movie-card__content-genres">{props?.movie?.genres?.join(", ")}</div>
-            <div className="app-movie-card__content-date">{getFullYear(props?.movie?.releaseDate)}</div>
+            <h3 className="app-movie-card__content-title">{movie?.title}</h3>
+            <div className="app-movie-card__content-genres">{movie?.genres?.join(", ")}</div>
+            <div className="app-movie-card__content-date">{getFullYear(movie?.releaseDate)}</div>
           </CardContent>
         </CardActionArea>
       </Card>

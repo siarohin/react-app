@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
-import { Button } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
+
+import { Button, AddIcon } from "../../shared";
 
 import "./AddMovieButton.scss";
 import { IAddMovieButtonProps } from "./models";
