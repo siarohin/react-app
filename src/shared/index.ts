@@ -28,8 +28,6 @@ import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import SearchIcon from "@material-ui/icons/Search";
 
-import { FormBuilder, FieldGroup, FieldControl, Validators, FormGroup } from "react-reactive-form";
-
 export {
   // @material-ui
   Button,
@@ -58,24 +56,5 @@ export {
   CheckBoxIcon,
   CheckBoxOutlineBlankIcon,
   SearchIcon,
-  Pagination,
-  // react-reactive-form
-  FormBuilder,
-  FieldGroup,
-  FieldControl,
-  Validators,
-  FormGroup
-};
-
-// re-exported from react-reactive-form
-export type InputType = "checkbox" | "radio" | "switch";
-export type Handler = {
-  value: any;
-  onChange: (e: any) => void;
-  onBlur: (e: any) => void;
-  onFocus: (e: any) => void;
-  disabled: boolean;
-  checked?: boolean;
-  editable?: boolean;
-  type?: string;
+  Pagination
 };

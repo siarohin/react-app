@@ -79,6 +79,7 @@ Array [
                 autoFocus={false}
                 className="MuiInputBase-input MuiFilledInput-input"
                 disabled={false}
+                name="searchInput"
                 onAnimationStart={[Function]}
                 onBlur={[Function]}
                 onChange={[Function]}
