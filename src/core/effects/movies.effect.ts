@@ -4,7 +4,14 @@ import { switchMap, map, catchError } from "rxjs/operators";
 
 import { DEFAULT_GENRE, DeleteMovieMsg, MOVIES_PER_PAGE, SEARCH_BY, SORTING_ORDER, UpsertMovieMsg } from "../constants";
 import { IMovieResponseData, IMoviesRequestQuery, MovieService } from "../services";
-import { MoviesActions, SharedModels, State, ToastActions, UserPreferencesModels } from "../store";
+import {
+  MoviesActions,
+  SharedModels,
+  State,
+  ToastActions,
+  UserPreferencesActions,
+  UserPreferencesModels
+} from "../store";
 
 const movieService: MovieService = new MovieService();
 
@@ -32,6 +39,20 @@ const loadMovies$ = (action$: ActionsObservable<SharedModels.ActionWithPayload<a
       return movieService.getMovies(getQueryParams(userPreferencesState)).pipe(
         map((data) => MoviesActions.loadMoviesSuccess({ data })),
         catchError(() => observableOf(MoviesActions.loadMoviesFail()))
+      );
+    })
+  );
+
+/**
+ * Effect for processing LOAD_MOVIE_BY_ID action
+ */
+const loadMovieById$ = (action$: ActionsObservable<SharedModels.ActionWithPayload<any>>) =>
+  action$.pipe(
+    ofType(MoviesActions.loadMovieById),
+    switchMap(({ payload }) => {
+      return movieService.getMovieById(payload.id).pipe(
+        map((selectedMovie) => UserPreferencesActions.updateSelectedMovieSuccess({ selectedMovie })),
+        catchError(() => observableOf(UserPreferencesActions.updateSelectedMovieFail()))
       );
     })
   );
@@ -87,4 +108,4 @@ const deleteMovie$ = (action$: ActionsObservable<SharedModels.ActionWithPayload<
     )
   );
 
-export const movieEffects = combineEpics(loadMovies$, createMovie$, updateMovie$, deleteMovie$);
+export const movieEffects = combineEpics(loadMovies$, loadMovieById$, createMovie$, updateMovie$, deleteMovie$);

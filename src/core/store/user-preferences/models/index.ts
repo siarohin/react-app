@@ -4,3 +4,4 @@ export * from "./IGenresFilter";
 export * from "./ISearch";
 export * from "./IOffset";
 export * from "./IUserPreferencesState";
+export * from "./IMovieAction";

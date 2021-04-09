@@ -1,14 +1,15 @@
 import React from "react";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import renderer, { ReactTestRenderer } from "react-test-renderer";
 import configureStore from "redux-mock-store";
 
-import { State } from "./core";
+import { State } from "../../core";
 import App from "./App";
 
 const mockStore = configureStore([]);
 
-describe("App: ", () => {
+describe("Pages.App.App: ", () => {
   let store: any;
   let component: ReactTestRenderer;
 
@@ -35,7 +36,11 @@ describe("App: ", () => {
 
     component = renderer.create(
       <Provider store={store}>
-        <App />
+        <Router>
+          <Switch>
+            <Route path="/" component={App} />
+          </Switch>
+        </Router>
       </Provider>
     );
   });

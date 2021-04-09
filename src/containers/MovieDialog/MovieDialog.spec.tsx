@@ -5,7 +5,7 @@ import configureStore from "redux-mock-store";
 import noop from "lodash/noop";
 
 import { State } from "../../core";
-import { AppState } from "../../AppState";
+import { AppState } from "../../pages";
 import MovieDialog from "./MovieDialog";
 
 const mockStore = configureStore([]);
@@ -22,6 +22,9 @@ describe("Containers.MovieDialog.MovieDialog: ", () => {
         genres: {
           all: ["Romantic"],
           selected: "All"
+        },
+        search: {
+          selected: ""
         }
       }
     } as State);

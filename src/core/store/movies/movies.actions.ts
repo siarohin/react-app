@@ -10,7 +10,12 @@ export const loadMovies = createAction("[ReactMovie] LOAD_MOVIES");
 
 export const loadMoviesSuccess = createAction<{ data: IMovieData }>("[ReactMovie] LOAD_MOVIES_SUCCESS");
 
-export const loadMoviesFail = createAction("[WelReactMovie] LOAD_MOVIES_FAIL");
+export const loadMoviesFail = createAction("[ReactMovie] LOAD_MOVIES_FAIL");
+
+/**
+ * LOAD_MOVIE_BY_ID
+ */
+export const loadMovieById = createAction<{ id: string }>("[ReactMovie] LOAD_MOVIE_BY_ID");
 
 /**
  * CREATE_MOVIE
@@ -19,7 +24,7 @@ export const createMovie = createAction<{ movie: Omit<IMovie, "id"> }>("[ReactMo
 
 export const createMovieSuccess = createAction<{ movie: IMovie }>("[ReactMovie] CREATE_MOVIE_SUCCESS");
 
-export const createMovieFail = createAction("[WelReactMovie] CREATE_MOVIE_FAIL");
+export const createMovieFail = createAction("[ReactMovie] CREATE_MOVIE_FAIL");
 
 /**
  * UPDATE_MOVIE
@@ -28,7 +33,7 @@ export const updateMovie = createAction<{ movie: IMovie }>("[ReactMovie] UPDATE_
 
 export const updateMovieSuccess = createAction<{ movie: IMovie }>("[ReactMovie] UPDATE_MOVIE_SUCCESS");
 
-export const updateMovieFail = createAction("[WelReactMovie] UPDATE_MOVIE_FAIL");
+export const updateMovieFail = createAction("[ReactMovie] UPDATE_MOVIE_FAIL");
 
 /**
  * DELETE_MOVIE
@@ -37,4 +42,4 @@ export const deleteMovie = createAction<{ movie: IMovie }>("[ReactMovie] DELETE_
 
 export const deleteMovieSuccess = createAction<{ movie: IMovie }>("[ReactMovie] DELETE_MOVIE_SUCCESS");
 
-export const deleteMovieFail = createAction("[WelReactMovie] DELETE_MOVIE_FAIL");
+export const deleteMovieFail = createAction("[ReactMovie] DELETE_MOVIE_FAIL");

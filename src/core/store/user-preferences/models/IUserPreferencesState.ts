@@ -3,6 +3,7 @@ import { IGenres } from "./IGenres";
 import { IOffset } from "./IOffset";
 import { ISearch } from "./ISearch";
 import { ISortingOptions } from "./ISortingOptions";
+import { IMovieAction } from "./IMovieAction";
 
 /**
  * Interface for object that describing the User preferences state
@@ -33,4 +34,9 @@ export interface IUserPreferencesState {
    * Selected movie by user
    */
   selectedMovie: MoviesModels.IMovie;
+
+  /**
+   * Dialog action
+   */
+  dialogAction: IMovieAction;
 }

@@ -85,3 +85,13 @@ export enum DeleteMovieMsg {
   Fail = "The movie could not be deleted.",
   Success = "The movie has been successfully deleted."
 }
+
+/**
+ * Router path enum
+ */
+export enum RouterPath {
+  NotFound = "/page-not-found",
+  NoMovies = "/movies-not-found",
+  Movie = "/film",
+  Search = "/search"
+}

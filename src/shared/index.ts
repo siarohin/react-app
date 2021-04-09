@@ -14,6 +14,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Grid from "@material-ui/core/Grid";
 
 import Pagination from "@material-ui/lab/Pagination";
@@ -56,5 +57,6 @@ export {
   CheckBoxIcon,
   CheckBoxOutlineBlankIcon,
   SearchIcon,
-  Pagination
+  Pagination,
+  CircularProgress
 };

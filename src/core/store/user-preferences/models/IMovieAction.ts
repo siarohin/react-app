@@ -1,5 +1,5 @@
-import { DialogAction, MoviesModels } from "../core";
-
+import { DialogAction } from "../../../constants";
+import { MoviesModels } from "../../movies";
 /**
  * Interface for action
  */

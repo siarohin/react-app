@@ -1,6 +1,7 @@
 import { ActionsObservable, combineEpics, ofType, StateObservable } from "redux-observable";
 import { of as observableOf } from "rxjs";
 import { mapTo, map, switchMap, filter } from "rxjs/operators";
+import isNil from "lodash/isNil";
 
 import {
   MoviesActions,
@@ -33,9 +34,13 @@ const updateUserPreferences$ = (
       UserPreferencesActions.updateSearchValue,
       UserPreferencesActions.updateOffset
     ),
-    map(() => {
+    switchMap(() => {
       const userPreferencesState: UserPreferencesModels.IUserPreferencesState = state$.value.userPreferences;
-      return !!userPreferencesState.genres.selected && !!userPreferencesState.sortingOptions.selected;
+      return observableOf(
+        !!userPreferencesState.genres.selected &&
+          !!userPreferencesState.sortingOptions.selected &&
+          !isNil(userPreferencesState.search.selected)
+      );
     }),
     filter((isInitialized) => !!isInitialized),
     mapTo(MoviesActions.loadMovies())
@@ -57,7 +62,7 @@ const updateSelectedMovie$ = (
       return observableOf({ shouldUpdate, selectedMovie });
     }),
     filter(({ shouldUpdate }) => shouldUpdate),
-    map(({ selectedMovie }) => UserPreferencesActions.updateSelectedMovie({ selectedMovie }))
+    map(({ selectedMovie }) => UserPreferencesActions.updateSelectedMovieSuccess({ selectedMovie }))
   );
 
 /**
@@ -75,7 +80,7 @@ const deleteSelectedMovie$ = (
       return observableOf(shouldUpdate);
     }),
     filter((shouldUpdate) => shouldUpdate),
-    mapTo(UserPreferencesActions.updateSelectedMovie({ selectedMovie: {} as MoviesModels.IMovie }))
+    mapTo(UserPreferencesActions.updateSelectedMovieSuccess({ selectedMovie: {} as MoviesModels.IMovie }))
   );
 
 export const userPreferencesEffects = combineEpics(updateUserPreferences$, updateSelectedMovie$, deleteSelectedMovie$);

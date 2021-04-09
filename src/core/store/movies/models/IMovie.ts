@@ -61,4 +61,9 @@ export interface IMovie {
    * Movie unique identifier
    */
   id: number;
+
+  /**
+   * Error state
+   */
+  hasError?: boolean;
 }

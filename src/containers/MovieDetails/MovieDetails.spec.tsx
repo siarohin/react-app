@@ -1,5 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import renderer, { ReactTestRenderer } from "react-test-renderer";
 import configureStore from "redux-mock-store";
 
@@ -12,12 +13,26 @@ describe("Containers.MovieDetails.MovieDetails: ", () => {
   let store: any;
   let component: ReactTestRenderer;
 
+  jest.mock("react-router-dom", () => ({
+    ...jest.requireActual("react-router-dom"),
+    useParams: jest.fn().mockReturnValue({ id: "1" })
+  }));
+
   beforeEach(() => {
-    store = mockStore({} as State);
+    store = mockStore({
+      userPreferences: {
+        selectedMovie: {},
+        search: {
+          selected: ""
+        }
+      }
+    } as State);
 
     component = renderer.create(
       <Provider store={store}>
-        <MovieDetails movie={undefined} />
+        <Router>
+          <Route path="/film/1" component={MovieDetails} />
+        </Router>
       </Provider>
     );
   });

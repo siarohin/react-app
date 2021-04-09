@@ -1,16 +1,16 @@
 import React, { ChangeEvent, ReactElement, useEffect, useState } from "react";
-import first from "lodash/first";
 import map from "lodash/map";
 
 import "./FilterSelect.scss";
 import { Select, MenuItem, FormControl } from "../../shared";
+import { FilterOptions } from "../../core";
 import { IFilterSelectProps } from "./models";
 
 export const FilterSelect = (props: IFilterSelectProps): ReactElement<IFilterSelectProps> => {
   const { sortingOptions, changeSorting } = props;
-  const [selectedOption, setSelectedOption] = useState(first(sortingOptions?.options));
+  const [selectedOption, setSelectedOption] = useState(FilterOptions.rating);
 
-  const handleChange = (event: ChangeEvent<{ value: string }>) => setSelectedOption(event.target.value);
+  const handleChange = (event: ChangeEvent<{ value: FilterOptions }>) => setSelectedOption(event.target.value);
 
   useEffect(() => changeSorting(selectedOption as string), [selectedOption]);
 

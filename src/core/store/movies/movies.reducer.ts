@@ -7,7 +7,7 @@ export const INITIAL_STATE: IMoviesState = {
   movies: [],
   limit: 0,
   offset: 0,
-  totalAmount: 0
+  totalAmount: (undefined as unknown) as number
 };
 
 const moviesReducer = createReducer(INITIAL_STATE, (builder) => {

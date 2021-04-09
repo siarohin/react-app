@@ -1,6 +1,7 @@
 import { createAction } from "@reduxjs/toolkit";
 
 import { MoviesModels } from "../movies";
+import { IMovieAction } from "./models";
 
 /**
  * UPDATE_SELECTED_GENRE
@@ -27,6 +28,13 @@ export const updateOffset = createAction<{ selected: string }>("[ReactMovie] UPD
 /**
  * UPDATE_SELECTED_MOVIE
  */
-export const updateSelectedMovie = createAction<{ selectedMovie: MoviesModels.IMovie }>(
-  "[ReactMovie] UPDATE_SELECTED_MOVIE"
+export const updateSelectedMovieSuccess = createAction<{ selectedMovie: MoviesModels.IMovie }>(
+  "[ReactMovie] UPDATE_SELECTED_MOVIE_SUCCESS"
 );
+
+export const updateSelectedMovieFail = createAction("[ReactMovie] UPDATE_SELECTED_MOVIE_FAIL");
+
+/**
+ * UPDATE_DIALOG_ACTION
+ */
+export const updateDialogAction = createAction<{ dialogAction: IMovieAction }>("[ReactMovie] UPDATE_DIALOG_ACTION");

@@ -2,26 +2,30 @@ import { Action, createReducer } from "@reduxjs/toolkit";
 import values from "lodash/values";
 
 import { IUserPreferencesState } from "./models";
-import { FilterOptions, FILTER_GENRES } from "../../constants";
+import { DEFAULT_GENRE, DialogAction, FilterOptions, FILTER_GENRES } from "../../constants";
 import * as UserPreferencesActions from "./user-preferences.actions";
 import { MoviesModels } from "../movies";
 
 export const INITIAL_STATE: IUserPreferencesState = {
   genres: {
     all: [...FILTER_GENRES],
-    selected: ""
+    selected: DEFAULT_GENRE
   },
   sortingOptions: {
     options: values(FilterOptions),
-    selected: ""
+    selected: FilterOptions.rating
   },
   search: {
-    selected: ""
+    selected: (undefined as unknown) as string
   },
   offset: {
     selected: "0"
   },
-  selectedMovie: {} as MoviesModels.IMovie
+  selectedMovie: {} as MoviesModels.IMovie,
+  dialogAction: {
+    action: (undefined as unknown) as DialogAction,
+    movie: {} as MoviesModels.IMovie
+  }
 };
 
 const userPreferencesReducer = createReducer(INITIAL_STATE, (builder) => {
@@ -49,9 +53,18 @@ const userPreferencesReducer = createReducer(INITIAL_STATE, (builder) => {
       offset: { ...state.offset, selected: payload.selected }
     }))
     // Update selected movie
-    .addCase(UserPreferencesActions.updateSelectedMovie, (state, { payload }) => ({
+    .addCase(UserPreferencesActions.updateSelectedMovieSuccess, (state, { payload }) => ({
       ...state,
       selectedMovie: payload.selectedMovie
+    }))
+    .addCase(UserPreferencesActions.updateSelectedMovieFail, (state) => ({
+      ...state,
+      selectedMovie: { hasError: true } as MoviesModels.IMovie
+    }))
+    // Update dialog action
+    .addCase(UserPreferencesActions.updateDialogAction, (state, { payload }) => ({
+      ...state,
+      dialogAction: payload.dialogAction
     }));
 });
 

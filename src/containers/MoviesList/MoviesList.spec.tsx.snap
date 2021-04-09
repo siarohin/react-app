@@ -1,7 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Containers.MoviesList.MoviesList:  should render component 1`] = `
-<div
-  className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 MuiGrid-item MuiGrid-grid-xs-12"
-/>
-`;
+exports[`Containers.MoviesList.MoviesList:  should render component 1`] = `null`;

@@ -83,6 +83,13 @@ export class MovieService {
   }
 
   /**
+   * Get movie by id
+   */
+  public getMovieById(id: string): Observable<MoviesModels.IMovie> {
+    return this.movieRepository.getMovieById(id).pipe(observableMap((response) => this.getMovieByModel(response)));
+  }
+
+  /**
    * Create movie
    */
   public createMovie(movie: Omit<MoviesModels.IMovie, "id">): Observable<MoviesModels.IMovie> {

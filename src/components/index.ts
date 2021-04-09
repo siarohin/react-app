@@ -10,3 +10,4 @@ export * from "./EditMovieMenu";
 export * from "./EditMovieMenuList";
 export * from "./UpsertMovieDialog";
 export * from "./DeleteMovieDialog";
+export * from "./NoMovies";

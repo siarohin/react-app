@@ -1,4 +1,4 @@
-import { IMovieAction } from "./IMovieAction";
+import { UserPreferencesModels } from "../core";
 
 /**
  * Interface for upsert/delete movie action
@@ -7,5 +7,5 @@ export interface IMovieUpsertAction {
   /**
    * Editable action
    */
-  editableAction: (action: IMovieAction) => void;
+  editableAction: (action: UserPreferencesModels.IMovieAction) => void;
 }

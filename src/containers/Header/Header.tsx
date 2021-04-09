@@ -1,20 +1,31 @@
 import React, { ComponentType, ReactElement } from "react";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
 import "./Header.scss";
 import { DialogAction, SharedModels, State, UserPreferencesActions, UserPreferencesModels } from "../../core";
+import { getPath } from "../../utils";
 import { AddMovieButton, SearchPanel } from "../../components";
 import { IMovieUpsertAction } from "../../models";
 
 const Header = (
   props: UserPreferencesModels.ISearch & IMovieUpsertAction & SharedModels.IDispatchAction
 ): ReactElement => {
-  const { selected, editableAction, dispatch } = props;
+  const { selected, dispatch } = props;
+  const history = useHistory();
 
-  const handleClick = (): void => editableAction({ action: DialogAction.CREATE });
+  const handleClick = (): void => {
+    const dialogAction: UserPreferencesModels.IMovieAction = {
+      action: DialogAction.CREATE
+    };
+    dispatch(UserPreferencesActions.updateDialogAction({ dialogAction }));
+  };
 
-  const handleSubmit = (value: string): void => {
+  const handleSubmit = (searchValue: string): void => {
+    const value: string = searchValue?.trim();
+
     dispatch(UserPreferencesActions.updateSearchValue({ selected: value }));
+    history.push(getPath(value));
   };
 
   return (

@@ -23,6 +23,13 @@ export class MovieRepository {
   }
 
   /**
+   * Get movie by id
+   */
+  public getMovieById(id: string): Observable<IMovieResponseData> {
+    return ajax.get(`${Endpoints.AppHost}/movies/${id}`).pipe(map(({ response }) => response));
+  }
+
+  /**
    * Create movie
    */
   public createMovie(request: Omit<IMovieResponseData, "id">): Observable<IMovieResponseData> {

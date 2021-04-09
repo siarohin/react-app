@@ -11,10 +11,17 @@ const MoviesFilter = (
 ): ReactElement => {
   const { totalAmount, genres, sortingOptions, dispatch } = props;
 
-  const handleSelectedGenre = (selected: string) => dispatch(UserPreferencesActions.updateSelectedGenre({ selected }));
+  const handleSelectedGenre = (selected: string) => {
+    if (genres.selected !== selected) {
+      dispatch(UserPreferencesActions.updateSelectedGenre({ selected }));
+    }
+  };
 
-  const handleChangeSorting = (selected: string) =>
-    dispatch(UserPreferencesActions.updateSelectedSortingOption({ selected }));
+  const handleChangeSorting = (selected: string) => {
+    if (sortingOptions.selected !== selected) {
+      dispatch(UserPreferencesActions.updateSelectedSortingOption({ selected }));
+    }
+  };
 
   return (
     <div className="app-movies-filter">
@@ -24,7 +31,7 @@ const MoviesFilter = (
       <div className="app-movies-filter__select-panel">
         <FilterSelect changeSorting={handleChangeSorting} sortingOptions={sortingOptions} />
       </div>
-      <div className="app-movies-filter__count">{<FilterCount count={totalAmount!} />}</div>
+      <div className="app-movies-filter__count">{totalAmount ? <FilterCount count={totalAmount!} /> : null}</div>
       <div className="app-movies-filter__pagination">{<PaginationLayout />}</div>
       <div className="app-movies-filter__separator"></div>
     </div>

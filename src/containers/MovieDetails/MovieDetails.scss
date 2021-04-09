@@ -19,6 +19,21 @@
   }
 }
 
+*[class*="MuiCircularProgress-root"] {
+  &.app-movie-details__progress-bar {
+    align-self: center;
+    justify-self: center;
+    grid-column: 1 / span 2;
+  }
+}
+
+.app-movie-details__404 {
+  grid-column: 1 / span 2;
+  align-self: center;
+  justify-self: center;
+  font-size: 2.8rem;
+}
+
 .app-movie-details__poster {
   background-repeat: no-repeat;
   background-size: contain;

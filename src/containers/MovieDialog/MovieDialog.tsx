@@ -1,14 +1,17 @@
 import React, { ComponentType, ReactElement } from "react";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { DialogTitle, SharedModels, MoviesModels, MoviesActions, State, UserPreferencesModels } from "../../core";
+import { getPath } from "../../utils";
 import { DeleteMovieDialog, UpsertMovieDialog } from "../../components";
 import { IMovieDialog } from "../../models";
 
 const MovieDialog = (
-  props: Omit<IMovieDialog, "onSubmit"> & SharedModels.IDispatchAction
+  props: Omit<IMovieDialog, "onSubmit"> & SharedModels.IDispatchAction & { searchValue: string }
 ): ReactElement<typeof DeleteMovieDialog> | ReactElement<typeof UpsertMovieDialog> => {
-  const { open, onClose, dialogSettings, genres, dispatch } = props;
+  const { open, onClose, dialogSettings, genres, searchValue, dispatch } = props;
+  const history = useHistory();
   const isActionDelete: boolean = dialogSettings?.title === DialogTitle.DELETE;
 
   const handleSubmit = (movie: MoviesModels.IMovie): void => {
@@ -24,7 +27,11 @@ const MovieDialog = (
   };
 
   const handleDelete = (movie: MoviesModels.IMovie): void => {
+    const value: string = searchValue?.trim();
+
     dispatch(MoviesActions.deleteMovie({ movie }));
+    history.push(getPath(value));
+
     onClose();
   };
 
@@ -43,8 +50,11 @@ const MovieDialog = (
   }
 };
 
-const mapStateToProps = (state: State): Partial<UserPreferencesModels.IUserPreferencesState> => {
-  return { genres: state.userPreferences.genres };
+const mapStateToProps = (state: State): { genres: UserPreferencesModels.IGenres; searchValue: string } => {
+  return {
+    genres: state.userPreferences.genres,
+    searchValue: state.userPreferences.search.selected
+  };
 };
 
 export default connect(mapStateToProps)(MovieDialog as ComponentType<any>);
