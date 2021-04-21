@@ -1,4 +1,4 @@
-import { IMovieDialog } from "../../models";
+import { IMovieDialog } from "../../../models";
 
 /**
  * Interface for app state

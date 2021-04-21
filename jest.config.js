@@ -1,7 +1,14 @@
 module.exports = {
   setupFiles: ["raf/polyfill", "<rootDir>/scripts/setupTests.js"],
+  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
   snapshotResolver: "<rootDir>/scripts/setupSnapshot.js",
-  collectCoverageFrom: ["**/*.{ts,tsx}", "!**/index.tsx", "!**/constant*.ts"],
+  collectCoverageFrom: [
+    "**/*.{ts,tsx}",
+    "!**/index.{ts,tsx}",
+    "!**/constant*.ts",
+    "!**/models/*",
+    "!**/*-configuration.{ts, tsx}"
+  ],
   coverageDirectory: "<rootDir>/coverage/",
   coverageThreshold: {
     global: {

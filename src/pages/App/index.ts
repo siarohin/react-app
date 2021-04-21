@@ -1,4 +1,4 @@
 import App from "./App";
 
-export * from "./AppState";
+export * from "./models";
 export { App };

@@ -14,13 +14,7 @@ import { MovieRepository } from "./MovieRepository";
  * Movie service
  */
 export class MovieService {
-  private movieRepository: MovieRepository;
-
-  constructor() {
-    this.movieRepository = new MovieRepository();
-  }
-
-  private getMovieByModel(movie: IMovieResponseData): MoviesModels.IMovie {
+  private static getMovieByModel(movie: IMovieResponseData): MoviesModels.IMovie {
     const INITIAL_VALUE: MoviesModels.IMovie = {} as MoviesModels.IMovie;
     return keys(movie).reduce(
       (movieKeys, key) => ({
@@ -31,7 +25,7 @@ export class MovieService {
     ) as MoviesModels.IMovie;
   }
 
-  private getMovieRequestByModel(movie: MoviesModels.IMovie): IMovieResponseData {
+  private static getMovieRequestByModel(movie: MoviesModels.IMovie): IMovieResponseData {
     const INITIAL_VALUE: IMovieResponseData = {} as IMovieResponseData;
     return keys(movie).reduce(
       (movieKeys, key) => ({
@@ -42,7 +36,7 @@ export class MovieService {
     ) as IMovieResponseData;
   }
 
-  private getQueries(query: IMoviesRequestQuery): string {
+  private static getQueries(query: IMoviesRequestQuery): string {
     const INITIAL_VALUE: string = "";
     return keys(query).reduce((queries, key) => {
       let currentQuery: string = "";
@@ -73,8 +67,8 @@ export class MovieService {
   /**
    * Get movies list
    */
-  public getMovies(query?: IMoviesRequestQuery): Observable<IMovieData> {
-    return this.movieRepository.getMovies(this.getQueries(query!)).pipe(
+  public static getMovies(query?: IMoviesRequestQuery): Observable<IMovieData> {
+    return MovieRepository.getMovies(this.getQueries(query!)).pipe(
       observableMap((response) => {
         const movies: Array<MoviesModels.IMovie> = map(response?.data, (movie) => this.getMovieByModel(movie));
         return { ...omit(response, ["data"]), movies };
@@ -85,34 +79,34 @@ export class MovieService {
   /**
    * Get movie by id
    */
-  public getMovieById(id: string): Observable<MoviesModels.IMovie> {
-    return this.movieRepository.getMovieById(id).pipe(observableMap((response) => this.getMovieByModel(response)));
+  public static getMovieById(id: string): Observable<MoviesModels.IMovie> {
+    return MovieRepository.getMovieById(id).pipe(observableMap((response) => this.getMovieByModel(response)));
   }
 
   /**
    * Create movie
    */
-  public createMovie(movie: Omit<MoviesModels.IMovie, "id">): Observable<MoviesModels.IMovie> {
-    return this.movieRepository
-      .createMovie(this.getMovieRequestByModel(movie as MoviesModels.IMovie))
-      .pipe(observableMap((response) => this.getMovieByModel(response)));
+  public static createMovie(movie: Omit<MoviesModels.IMovie, "id">): Observable<MoviesModels.IMovie> {
+    return MovieRepository.createMovie(this.getMovieRequestByModel(movie as MoviesModels.IMovie)).pipe(
+      observableMap((response) => this.getMovieByModel(response))
+    );
   }
 
   /**
    * Update movie
    */
-  public updateMovie(movie: MoviesModels.IMovie): Observable<MoviesModels.IMovie> {
-    return this.movieRepository
-      .updateMovie(this.getMovieRequestByModel(movie))
-      .pipe(observableMap((response) => this.getMovieByModel(response)));
+  public static updateMovie(movie: MoviesModels.IMovie): Observable<MoviesModels.IMovie> {
+    return MovieRepository.updateMovie(this.getMovieRequestByModel(movie)).pipe(
+      observableMap((response) => this.getMovieByModel(response))
+    );
   }
 
   /**
    * Delete movie
    */
-  public deleteMovie(movie: MoviesModels.IMovie): Observable<MoviesModels.IMovie> {
-    return this.movieRepository
-      .deleteMovie(this.getMovieRequestByModel(movie))
-      .pipe(observableMap((response) => this.getMovieByModel(response)));
+  public static deleteMovie(movie: MoviesModels.IMovie): Observable<MoviesModels.IMovie> {
+    return MovieRepository.deleteMovie(this.getMovieRequestByModel(movie)).pipe(
+      observableMap((response) => this.getMovieByModel(response))
+    );
   }
 }

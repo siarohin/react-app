@@ -18,7 +18,7 @@ import {
 import { DialogTitle, DialogAction, State, MoviesModels, UserPreferencesModels, RouterPath } from "../../core";
 import { IDialogSettings } from "../../models";
 import { getEnumKey } from "../../utils";
-import { AppState } from "./AppState";
+import { AppState } from "./models";
 
 const App = ({
   notifications,

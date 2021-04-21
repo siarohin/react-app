@@ -1,19 +1,19 @@
-import React, { ReactElement } from "react";
-import { shallow, ShallowWrapper } from "enzyme";
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import renderer from "react-test-renderer";
 
 import { AppLogo } from "./AppLogo";
 
 describe("Components.AppLogo.AppLogo: ", () => {
-  let component: ShallowWrapper<ReactElement>;
+  const title: string = "Hello Words";
 
   it("should render component", () => {
-    component = shallow(<AppLogo content="" />);
-    expect(component.exists()).toBe(true);
+    const component = renderer.create(<AppLogo content={title} />).toJSON();
+    expect(component).toMatchSnapshot();
   });
 
   it("should display title", () => {
-    const title: string = "Hello Words";
-    component = shallow(<AppLogo content={title} />);
-    expect(component.text()).toEqual(title);
+    render(<AppLogo content={title} />);
+    expect(screen.getByRole("heading")).toHaveTextContent(title);
   });
 });

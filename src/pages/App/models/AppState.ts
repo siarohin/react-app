@@ -1,4 +1,4 @@
-import { MoviesModels } from "../../core";
+import { MoviesModels } from "../../../core";
 import { IAppState } from "./IAppState";
 
 /**

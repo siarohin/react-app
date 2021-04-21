@@ -13,8 +13,6 @@ import {
   UserPreferencesModels
 } from "../store";
 
-const movieService: MovieService = new MovieService();
-
 /**
  * Returns query params for get movies request
  */
@@ -36,7 +34,7 @@ const loadMovies$ = (action$: ActionsObservable<SharedModels.ActionWithPayload<a
     ofType(MoviesActions.loadMovies),
     switchMap(() => {
       const userPreferencesState: UserPreferencesModels.IUserPreferencesState = state$.value.userPreferences;
-      return movieService.getMovies(getQueryParams(userPreferencesState)).pipe(
+      return MovieService.getMovies(getQueryParams(userPreferencesState)).pipe(
         map((data) => MoviesActions.loadMoviesSuccess({ data })),
         catchError(() => observableOf(MoviesActions.loadMoviesFail()))
       );
@@ -50,7 +48,7 @@ const loadMovieById$ = (action$: ActionsObservable<SharedModels.ActionWithPayloa
   action$.pipe(
     ofType(MoviesActions.loadMovieById),
     switchMap(({ payload }) => {
-      return movieService.getMovieById(payload.id).pipe(
+      return MovieService.getMovieById(payload.id).pipe(
         map((selectedMovie) => UserPreferencesActions.updateSelectedMovieSuccess({ selectedMovie })),
         catchError(() => observableOf(UserPreferencesActions.updateSelectedMovieFail()))
       );
@@ -64,7 +62,7 @@ const createMovie$ = (action$: ActionsObservable<SharedModels.ActionWithPayload<
   action$.pipe(
     ofType(MoviesActions.createMovie),
     switchMap(({ payload }) =>
-      movieService.createMovie(payload.movie).pipe(
+      MovieService.createMovie(payload.movie).pipe(
         switchMap((movie) => [
           MoviesActions.createMovieSuccess({ movie }),
           ToastActions.showSuccessToast({ message: UpsertMovieMsg.Success })
@@ -81,7 +79,7 @@ const updateMovie$ = (action$: ActionsObservable<SharedModels.ActionWithPayload<
   action$.pipe(
     ofType(MoviesActions.updateMovie),
     switchMap(({ payload }) =>
-      movieService.updateMovie(payload.movie).pipe(
+      MovieService.updateMovie(payload.movie).pipe(
         switchMap((movie) => [
           MoviesActions.updateMovieSuccess({ movie }),
           ToastActions.showSuccessToast({ message: UpsertMovieMsg.Success })
@@ -98,7 +96,7 @@ const deleteMovie$ = (action$: ActionsObservable<SharedModels.ActionWithPayload<
   action$.pipe(
     ofType(MoviesActions.deleteMovie),
     switchMap(({ payload }) =>
-      movieService.deleteMovie(payload.movie).pipe(
+      MovieService.deleteMovie(payload.movie).pipe(
         switchMap((movie) => [
           MoviesActions.deleteMovieSuccess({ movie }),
           ToastActions.showSuccessToast({ message: DeleteMovieMsg.Success })

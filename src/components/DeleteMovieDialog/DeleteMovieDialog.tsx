@@ -22,7 +22,7 @@ export const DeleteMovieDialog = (props: Omit<IMovieDialog, "onSubmit">): ReactE
           A you sure you want to delete &ldquo;{dialogSettings.values.title}&rdquo; movie?
         </DialogContent>
         <DialogActions className="app-delete-movie-dialog__action">
-          <Button className="app-delete-movie-dialog__button" onClick={handleDelete}>
+          <Button type="submit" className="app-delete-movie-dialog__button" onClick={handleDelete}>
             Confirm
           </Button>
         </DialogActions>

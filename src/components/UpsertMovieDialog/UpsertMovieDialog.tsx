@@ -70,6 +70,7 @@ export const UpsertMovieDialog = (props: Omit<IMovieDialog, "onDelete">): ReactE
               <TextField
                 className="app-upsert-movie-dialog__content-input"
                 name="id"
+                inputProps={{ "aria-label": "id" }}
                 value={form.values.id}
                 variant="filled"
                 type="number"
@@ -83,6 +84,7 @@ export const UpsertMovieDialog = (props: Omit<IMovieDialog, "onDelete">): ReactE
             <TextField
               className="app-upsert-movie-dialog__content-input"
               name="title"
+              inputProps={{ "aria-label": "title" }}
               value={form.values.title}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
@@ -113,6 +115,7 @@ export const UpsertMovieDialog = (props: Omit<IMovieDialog, "onDelete">): ReactE
             <TextField
               className="app-upsert-movie-dialog__content-input"
               name="posterPath"
+              inputProps={{ "aria-label": "posterPath" }}
               value={form.values.posterPath}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
@@ -162,6 +165,7 @@ export const UpsertMovieDialog = (props: Omit<IMovieDialog, "onDelete">): ReactE
             <TextField
               className="app-upsert-movie-dialog__content-input"
               name="overview"
+              inputProps={{ "aria-label": "overview" }}
               value={form.values.overview}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
@@ -177,6 +181,7 @@ export const UpsertMovieDialog = (props: Omit<IMovieDialog, "onDelete">): ReactE
             <TextField
               className="app-upsert-movie-dialog__content-input"
               name="runtime"
+              inputProps={{ "aria-label": "runtime" }}
               value={form.values.runtime}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
