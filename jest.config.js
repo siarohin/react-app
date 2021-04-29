@@ -20,7 +20,7 @@ module.exports = {
   },
   moduleFileExtensions: ["js", "jsx", "json", "ts", "tsx"],
   moduleNameMapper: {
-    "^.+\\.(css|scss)$": "identity-obj-proxy"
+    ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"
   },
   reporters: [
     "default",

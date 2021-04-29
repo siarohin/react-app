@@ -79,7 +79,7 @@ module.exports = {
       },
       {
         selector: "parameter",
-        format: ["camelCase"],
+        format: ["camelCase", "PascalCase"],
         leadingUnderscore: "allow"
       }
     ],
@@ -117,10 +117,10 @@ module.exports = {
     "no-null/no-null": "off",
     "no-restricted-imports": ["error", { paths: ["lodash"] }],
     "no-trailing-spaces": ["error"],
-    "no-underscore-dangle": "error",
+    "no-underscore-dangle": "off",
     "no-unused-expressions": "error",
     "no-multi-spaces": "error",
-    "object-curly-spacing": ["error", "always", { objectsInObjects: false }],
+    "object-curly-spacing": "off",
     "prefer-const": "warn",
     radix: "error",
     "spaced-comment": ["error", "always"],

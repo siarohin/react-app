@@ -9,3 +9,16 @@ html {
 body {
   margin: 0;
 }
+
+.app {
+  display: grid;
+  min-height: 100vh;
+}
+
+*[class*="MuiCircularProgress-root"] {
+  &.app__progress-bar {
+    align-self: center;
+    justify-self: center;
+    grid-column: 1 / span 2;
+  }
+}
